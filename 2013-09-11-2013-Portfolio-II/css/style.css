@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/css?family=Trykker);
+@import url(http://fonts.googleapis.com/css?family=Port+Lligat+Sans);
+
+#logoimg {
+  float: left;
+  width: 75px;
+  height: 75px;
+}
+
+#logotxt {
+  float: left;
+  width: 350px;
+  font-family:'Trykker', serif;
+  font-size: 35px;
+  padding: 20px;
+  color: blue;
+}
+
+header > h1 {
+font-family: 'Trykker', serif;
+font-size: 35px;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+body {
+  font-family: 'Port Lligat Sans', sans-serif;
+}
+
+html {
+  background-color: #ff6633;
+}
+
+section > h2 {
+  font-size: 30px;
+}
+
+ul {
+  list-style: inside circle;
+  list-style-type: disc;
+  padding-left: 25px;
+}
+
+section > p {
+  padding: 15px;
+  line-height: 25px;
+}
+
+section > p:nth-child(2n) {
+  color: blue;
+  font-style: italic;
+}
+
+a:hover {
+  background-color: white;
+}
