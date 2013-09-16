@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="group-1">
+  <link href='http://fonts.googleapis.com/css?family=Inika' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Contact | Case Of The Monday's</title>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <div id="logo">
+      <h1>Case Of The<br/>Mondays</h1>
+        <img src="" width="" height="" alt="">
+      </div> <!-- #logo end -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav> <!-- nav end -->
+      <div id="button">
+        <a href="cart.html"><img src="images/cart.jpg" height="30" width="35" alt="View Cart"></a>
+      </div> <!-- #button end -->
+    </header> <!-- header end -->
+    <section id="banner">
+        <img src="images/milton-main.jpg" width="960" height="375" alt="">
+    </section> <!-- #banner end -->
+
+    <!-- CONTACT SECTION -->
+    <section id="main_content">
+      <div class="big_bg">
+        <h2 class="titlebarindex">Contact Us!</h2>
+        <form id="contact" action="cgi-bin/form_contact.rb" method="POST">
+          <fieldset>
+            <ul>
+              <li><label for="fname">First Name</label><input id="fname" class="textinput" type="text" name="fname" required></li>
+              <li><label for="lname">Last Name</label><input id="lname" class="textinput" type="text" name="lname" required></li>
+              <li><label for="email">Email</label><input id="email" class="textinput" type="email" name="email" placeholder="user@domain.com" required></li>
+              <li><label for="tel">Phone number</label><input id="tel" class="textinput" type="tel" name="tel" placeholder="555-555-5555" pattern="[2-9][0-9]{2}-[0-9]{3}-[0-9]{4}" title="North America format: 555-555-5555"></li>
+              <li><label for="message">Message</label><textarea id="message" name="message" maxlength="300" wrap="soft" rows="3" cols="50" placeholder="Tell me your secret. (300 char max)"></textarea></li>
+              <li><input type="submit"></li>
+            </ul>
+          </fieldset>
+        </form> <!-- form end -->
+        <figure id="secretary">
+          <img src="images/secretary.jpg" width="360" height="270" alt="Corporate accounts payable Nina speaking... just a moment.">
+          <figcaption id="justamoment">"<em>JUST</em> a moment."</figcaption>
+        </figure>
+        <div class="clearfix"></div>
+      </div>
+    </section>
+    <!-- CONTACT SECTION END -->
+
+    <footer>
+      <small><p id="copyright">Copyright &copy; 2013, Case Of The Monday's <abbr title="Limited Liability Company">LLC</abbr></p></small>
+    </footer> <!-- footer end -->
+  </div> <!-- #container end -->
+</body>
+</html>
