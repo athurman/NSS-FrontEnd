@@ -1,0 +1,19 @@
+header {
+  border: 2px dashed $tesla_red;
+
+  #logo {
+    width: 78px;
+    height: 105px;
+    background: url(../images/tesla_flag.png);
+    float: left;
+  }
+
+  #company {
+    float: left;
+    h1 {
+      font-family: $headerh1;
+      margin-left: 50px;
+      margin-top: 35px;
+    }
+  }
+}
