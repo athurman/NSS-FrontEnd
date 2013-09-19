@@ -22,14 +22,26 @@ nav ul {
     padding-right: 50px; }
 
 div#content section h1 {
-  font-size: 20px;
-  color: #c60b0b; }
+  color: #c60b0b;
+  font-family: "Raleway", sans-serif;
+  font-size: 22px;
+  line-height: 20px;
+  letter-spacing: 5px; }
 div#content section h2 {
   font-size: 18px;
   color: #923f3f; }
 div#content section p {
-  font-size: 12px;
-  color: #969696; }
+  color: #ff0033;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 3px;
+  margin: 5px;
+  padding: 10px;
+  border: 2px dashed green;
+  border-radius: 20px;
+  background-color: yellow;
+  box-shadow: 5px 5px 10px black; }
 
 footer p {
   color: #969696;
