@@ -27,7 +27,7 @@ debugger;
       exists = true;
   }
 
-  !exists ? types.push(dish.type) : null;  // If  exists is false, then does not push type to new array.  If true, does push to Types array.
+  !exists ? add_list(types, dish.type) : null;  // If  exists is false, then does not push type to new array.  If true, does push to Types array.
   add_list(menu_items, dish); // Push dish objects to menu_items array.
   var name = prompt("What is the name of your dish? Leave blank to exit.");
 }
