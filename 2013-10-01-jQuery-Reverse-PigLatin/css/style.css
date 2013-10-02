@@ -1,0 +1,29 @@
+body {
+  background: #FFAAFF;
+  font-family: "Trebuchet MS", Helvetica, sans-serif; }
+
+h1 {
+  margin: 20px;
+  color: #fff;
+  text-align: center;
+  font-style: bold;
+  font-size: 54px; }
+
+input {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 25px; }
+
+#original, #converted {
+  width: 450px; }
+
+#convert {
+  padding: 10px;
+  background: #E80C7A;
+  border: none;
+  border-radius: 8px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: -1px -1px 1px #B23A5E;
+  box-shadow: 1px 1px 1px #B23A5E; }
