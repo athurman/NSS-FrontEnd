@@ -12,22 +12,38 @@ html {
   background-color: white;
   border-radius: 5px; }
 
+.canvas {
+  float: left;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  margin: 0; }
+
 input {
-  margin: 10px;
+  margin: 30px 10px;
   padding: 5px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
-  border-radius: 5px;
-  float: left; }
+  border-radius: 5px; }
 
 h1 {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
-  text-decoration: underline; }
+  font-size: 75px;
+  margin: 0px; }
+
+#lite {
+  font-weight: 200; }
 
 .clear {
   clear: both; }
+
+#boxes {
+  width: 1000px;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 1px solid #BBD6D6; }
 
 #box_container {
   width: 900px;
@@ -35,16 +51,21 @@ h1 {
   border: 1px solid #fff;
   border-radius: 5px; }
 
-#boxes {
+#brush {
+  border: 1px dashed #fff;
+  padding: 3px 25px;
+  margin-left: 15px; }
+
+#colors {
   width: 850px;
   margin: auto; }
 
-#color {
+#color, #amount {
   background-color: #eee;
   border: 1px solid #BBD6D6;
-  width: 250px; }
+  width: 275px; }
 
-#add_color {
+#add_color, #add_box {
   width: 100px;
   color: #fff;
   border: none;

@@ -7,13 +7,17 @@
     <link href='css/style.css' rel='stylesheet'>
   </head>
   <body>
-    <h1>Photoshop Lite</h1>
+    <h1>Paint<span id='lite'>Lite</span></h1>
     <input autofocus id='color' placeholder='Create your color.' type='text'>
     <input id='add_color' type='button' value='Add Color'>
-    <div class='box' id='brush'></div>
-    <div class='clear'></div>
+    <span id='brush'></span>
     <div id='box_container'>
-      <div id='boxes'></div>
+      <div id='colors'></div>
+      <div class='clear'></div>
+    </div>
+    <input id='amount' placeholder='Type in number for canvas size (e,g 5000).' type='text'>
+    <input id='add_box' type='button' value='Add Boxes!'>
+    <div id='boxes'>
       <div class='clear'></div>
     </div>
     <script src='js/jquery-1.10.2.min.js'></script>
