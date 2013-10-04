@@ -1,0 +1,119 @@
+@import url(http://fonts.googleapis.com/css?family=Quattrocento:400,700);
+@import url(http://fonts.googleapis.com/css?family=PT+Mono);
+
+body {
+  font-family: 'Quattrocento', serif;
+  background-color: #6496E3;
+  color: #57656B;
+}
+
+#container {
+  width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+h1{
+  font-family: 'PT Mono', sans-serif;
+  text-align: center;
+  font-size: 100px;
+  margin: 10px 25px;
+  text-shadow: 1px 1px 1px #64C8E3;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+img {
+  width: 125px;
+  height: 125px;
+  display: block;
+  margin: 10px 25px;
+  position: relative;
+}
+
+input {
+  margin: 10px 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.clear {
+  clear: both;
+}
+
+.in_the_red {
+  color: #B85856;
+}
+
+.in_the_green {
+  color: #B8B756;
+}
+
+.in_the_red_balance {
+  color: #B85856;
+}
+
+.button {
+  background-color: #B5CCFF;
+  color: #454E61;
+  box-shadow: 1px 1px 1px #57656B;
+}
+
+.input {
+  background-color: #EBEBEB;
+  box-shadow: 2px 1px 1px #F5F5F5;
+}
+
+#display_balance {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  font-family: 'PT Mono', sans-serif;
+  font-size: 100px;
+  text-align: center;
+}
+
+#history {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+#deposits_history {
+  float: left;
+}
+
+#withdraws_history {
+  float: right;
+}
+
+#history h4 {
+  margin: 0px;
+  margin-top: 5px;
+  text-align: center;
+  padding: 5px;
+  background-color: #57656B;
+  color: #6496E3;
+  font-size: 20px;
+}
+
+#history ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#history ul li{
+  list-style: none;
+  margin: 0px;
+  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#history h2 {
+  text-align: center;
+  font-size: 25px;
+  border-bottom: 1px solid #57656B;
+}

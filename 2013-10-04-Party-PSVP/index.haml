@@ -1,0 +1,23 @@
+!!! 5
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %title Party Planner & RSVP Application
+    %link{rel: 'stylesheet', href: 'css/normalize.css'}
+    %link{rel: 'stylesheet', href: 'css/style.css'}
+  %body
+    #container
+      %header
+        %h1 Party Planner & RSVP Application
+      %input#add{type:'button', value:'Add Row'}
+      %table
+        %tr.home
+          %th Name
+          %th Food
+          %th Controls
+          %th Going?
+          %th Up/Down
+
+    %script{src: 'js/jquery-1.10.2.min.js'}
+    %script{src: 'js/underscore-min.js'}
+    %script{src: 'js/main.js'}
