@@ -1,0 +1,79 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400);
+
+body {
+  background-color: #D1DDE8;
+  color: #3C3F42;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+}
+
+#container {
+  width: 1000px;
+  margin: auto;
+}
+
+.bg_color {
+  width: 15px;
+  height: 15px;
+  margin:5px;
+  text-align: center;
+  margin: auto;
+  border: 1px solid #838A91;
+}
+
+
+
+#todo_list {
+  margin: 0 auto;
+  width: 950px;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  margin: 25px 0;
+  font-weight: 300;
+  color: #1C2D38;
+}
+
+tr {
+  border-bottom: 1px solid #CCD4D6;
+}
+
+th {
+  padding: 5px 10px 5px 10px;
+  margin-top: 15px;
+  font-weight: 300;
+}
+
+td {
+  text-align: center;
+}
+
+input {
+  border: none;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.delete_button {
+  background-color: #FF3336;
+  color: #fff;
+  font-weight: 200;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #873436;
+}
+
+#add_task {
+  background-color: #315063;
+  color: #fff;
+  font-weight: 200;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #223845;
+  margin-left: 10px;
+}
+
+.header {
+  margin-right: 120px;
+  margin-bottom: 10px;
+}

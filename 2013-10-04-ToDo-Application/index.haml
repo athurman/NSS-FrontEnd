@@ -1,0 +1,32 @@
+!!! 5
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %title To.Do
+    %link{rel: 'stylesheet', href: 'css/normalize.css'}
+    %link{rel: 'stylesheet', href: 'css/style.css'}
+  %body
+    #container
+      %header
+        %h1 To.Do
+        %p <span class=header>due date:</span> <span class=header>task to add:</span> <span class=header>category color:</span>
+      %input#due_date{type:'text', placeholder:'e.g. 04/11/14'}
+      %input#task{type:'text', placeholder:'e.g Get beer'}
+      %input#color{type:'text', placeholder:'e.g. #FF7D6A'}
+      %input#add_task{type:'button', value:'Add Task'}
+
+      %section#task_list
+        %h1 task list
+        %table#todo_list
+          %tr.home
+            %th due date
+            %th task
+            %th color
+            %th complete
+            %th remove
+            %th up/down
+
+
+    %script{src: 'js/jquery-1.10.2.min.js'}
+    %script{src: 'js/underscore-min.js'}
+    %script{src: 'js/main.js'}

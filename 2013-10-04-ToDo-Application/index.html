@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>To.Do</title>
+    <link href='css/normalize.css' rel='stylesheet'>
+    <link href='css/style.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div id='container'>
+      <header>
+        <h1>To.Do</h1>
+        <p><span class=header>due date:</span> <span class=header>task to add:</span> <span class=header>category color:</span></p>
+      </header>
+      <input id='due_date' placeholder='e.g. 04/11/14' type='text'>
+      <input id='task' placeholder='e.g Get beer' type='text'>
+      <input id='color' placeholder='e.g. #FF7D6A' type='text'>
+      <input id='add_task' type='button' value='Add Task'>
+      <section id='task_list'>
+        <h1>task list</h1>
+        <table id='todo_list'>
+          <tr class='home'>
+            <th>due date</th>
+            <th>task</th>
+            <th>color</th>
+            <th>complete</th>
+            <th>remove</th>
+            <th>up/down</th>
+          </tr>
+        </table>
+      </section>
+    </div>
+    <script src='js/jquery-1.10.2.min.js'></script>
+    <script src='js/underscore-min.js'></script>
+    <script src='js/main.js'></script>
+  </body>
+</html>
