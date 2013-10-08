@@ -51,6 +51,10 @@ input {
   border-radius: 5px;
   box-shadow: 1px 1px 1px #873436; }
 
+.delete_button:hover {
+  background-color: #B22426;
+  transition: all 0.4s ease-out; }
+
 #add_task {
   background-color: #315063;
   color: #fff;
