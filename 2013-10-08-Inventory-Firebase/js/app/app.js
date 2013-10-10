@@ -1,9 +1,16 @@
 'use strict';
 
+// Database Schema
 var Δdb;
 var Δitems;
-var items = [];
-var sum = 0;
+var Δperson;
+
+// Local Schema
+var db = {};
+db.person = {};
+db.items = [];
+db.statistics = {};
+db.statistics.sum = 0;
 
 $(document).ready(initialize);
 
@@ -14,27 +21,37 @@ function initialize(){
 
   Δdb = new Firebase('https://inventory-at.firebaseio.com/');
   Δitems = Δdb.child('items');
-  Δdb.once('value', receivedDbData);
-  Δitems.on('child_added', childAdded);
+  Δperson = Δdb.child('person');
+  Δperson.on('value', personChanged);
+  Δitems.on('child_added', itemAdded);
 }
 
-function childAdded(snapshot) {
+function itemAdded(snapshot) {
   console.log(snapshot.val());
   var item = snapshot.val();
-  items.push(item);
   addData(item);
-
-  var amount = parseFloat(item.amount);
-  var value = parseFloat(item.value);
-  sum += amount * value;
-
-  $('#total_cost').val('$' + sum);
+  sumTotal(item);
+  db.items.push(item);
 }
 
-function receivedDbData(snapshot) {
-  var inventory = snapshot.val();
-  $('#person').val(inventory.fullName);
-  $('#address').val(inventory.address);
+function sumTotal(item) {
+  var amount = parseFloat(item.amount);
+  var value = parseFloat(item.value);
+  db.statistics.sum += amount * value;
+
+  $('#total_cost').val('$' + db.statistics.sum);
+}
+
+function personChanged(snapshot) {
+  db.person = snapshot.val();
+
+  try {
+    $('#person').val(db.person.fullName);
+    $('#address').val(db.person.address);
+  } catch(err) {
+    console.log('Error found: ' + err);
+  }
+}
 
   // for(var property in inventory.items){
   //   var item = inventory.items[property];
@@ -44,25 +61,14 @@ function receivedDbData(snapshot) {
   // for(var i = 0; i < items.length; i++) {
   //   addData(items[i]);
   // }
-  for(var property in inventory.items) {
-    var amount = inventory.items[property].amount;
-    var value = inventory.items[property].value;
-
-    amount = parseFloat(amount);
-    value = parseFloat(value);
-
-    sum += totalPerItem(amount, value);
-  }
-}
 
 function save() {
   var fullName = $('#person').val();
   var address = $('#address').val();
-  var inventory = {};
-  inventory.fullName = fullName;
-  inventory.address = address;
+  db.person.fullName = fullName;
+  db.person.address = address;
 
-  Δdb.update(inventory); // .update only updates inventory data, does not override other data in the database (non-destructive)
+  Δperson.set(db.person); // .update only updates inventory data, does not override other data in the database (non-destructive)
 }
 
 function add() {
