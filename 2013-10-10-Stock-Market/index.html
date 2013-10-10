@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width' name='viewport'>
+  <title>Foundation 4</title>
+  <link href='css/normalize.css' rel='stylesheet'>
+  <link href='css/foundation.css' rel='stylesheet'>
+  <link href='css/app.css' rel='stylesheet'>
+  <script src='js/vendor/custom.modernizr.js'></script>
+</head>
+<body>
+  <div class='row'>
+    <div class='small-12 column'>
+      <h1>To Mark.it</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-3 column'>
+      <input id='symbol' placeholder='Add Symbol' type='text'>
+    </div>
+    <div class='small-3 column'>
+      <input id='quantity' placeholder='Quantity' type='text'>
+    </div>
+    <div class='small-6 column'>
+      <input class='button radius small success' id='buy' type='button' value='buy'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-5 columns'>
+      <p id='create_funds'></p>
+    </div>
+    <div class='small-7 columns'></div>
+  </div>
+  <div class='row'>
+    <div class='small-3 column'>
+      <input autofocus id='funds' placeholder='Initial Funds' type='text'>
+    </div>
+    <div class='small-3 column'>
+      <input class='button radius small success' id='add_funds' type='button' value='Set Funds'>
+    </div>
+    <div class='small-3 column'>
+      <input id='interval' placeholder='Set Refresh Time' type='text'>
+    </div>
+    <div class='small-3 column'>
+      <input class='button radius small' id='add_interval' type='button' value='Set Interval'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-2 columns'>
+      <h4 class='subheader'>Total</h4>
+    </div>
+    <div class='small-3 columns'>
+      <input id='grand_total' readonly type='text'>
+    </div>
+    <div class='small-7 columns'></div>
+  </div>
+  <div class='row'>
+    <div class='small-12 columns'>
+      <table id='stock_list'>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Quote</th>
+          <th>Purchased</th>
+          <th>Total</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script src='js/vendor/jquery-1.10.2.js'></script>
+  <script src='js/vendor/foundation.min.js'></script>
+  <script src='js/vendor/underscore.js'></script>
+  <script src='js/vendor/moment.min.js'></script>
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+  <script src='js/app/app.js'></script>
+</body>

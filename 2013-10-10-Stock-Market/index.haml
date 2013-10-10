@@ -1,0 +1,62 @@
+!!! 5
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+%head
+  %meta{charset: "utf-8"}
+  %meta{name: "viewport", content: "width=device-width"}
+  %title Foundation 4
+  %link{rel: "stylesheet", href: "css/normalize.css"}
+  %link{rel: "stylesheet", href: "css/foundation.css"}
+  %link{rel: "stylesheet", href: "css/app.css"}
+  %script{src: "js/vendor/custom.modernizr.js"}
+%body
+  .row
+    .small-12.column
+      %h1 To Mark.it
+  .row
+    .small-3.column
+      %input#symbol{type:'text', placeholder:'Add Symbol'}
+    .small-3.column
+      %input#quantity{type:'text', placeholder:'Quantity'}
+    .small-6.column
+      %input#buy.button.radius.small.success{type:'button', value:'buy'}
+  .row
+    .small-5.columns
+      %p#create_funds
+    .small-7.columns
+  .row
+    .small-3.column
+      %input#funds{type:'text', placeholder:'Initial Funds', autofocus:true}
+    .small-3.column
+      %input#add_funds.button.radius.small.success{type:'button', value:'Set Funds'}
+    .small-3.column
+      %input#interval{type:'text', placeholder:'Set Refresh Time'}
+    .small-3.column
+      %input#add_interval.button.radius.small{type:'button', value:'Set Interval'}
+  .row
+    .small-2.columns
+      %h4.subheader Total
+    .small-3.columns
+      %input#grand_total{type:'text', readonly:true}
+    .small-7.columns
+  .row
+    .small-12.columns
+      %table#stock_list
+        %tr
+          %th Symbol
+          %th Name
+          %th Quote
+          %th Purchased
+          %th Total
+
+
+
+
+
+
+  %script{src: 'js/vendor/jquery-1.10.2.js'}
+  %script{src: 'js/vendor/foundation.min.js'}
+  %script{src: 'js/vendor/underscore.js'}
+  %script{src: 'js/vendor/moment.min.js'}
+  %script{src: 'https://cdn.firebase.com/v0/firebase.js'}
+  %script{src: 'js/app/app.js'}
