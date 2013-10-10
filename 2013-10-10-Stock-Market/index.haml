@@ -21,9 +21,17 @@
     .small-6.column
       %input#buy.button.radius.small.success{type:'button', value:'buy'}
   .row
-    .small-5.columns
-      %p#create_funds
-    .small-7.columns
+    .small-3.columns
+      %h4.subheader Current Balance:
+    .small-3.columns
+      %input#balance{type:'text', readonly:true, placeholder:'$0.00'}
+    .small-6.columns
+  .row
+    .small-3.columns
+      %h4.subheader Total:
+    .small-3.columns
+      %input#total{type:'text', readonly:true}
+    .small-6.columns
   .row
     .small-3.column
       %input#funds{type:'text', placeholder:'Initial Funds', autofocus:true}
@@ -35,7 +43,7 @@
       %input#add_interval.button.radius.small{type:'button', value:'Set Interval'}
   .row
     .small-2.columns
-      %h4.subheader Total
+      %h4.subheader Total:
     .small-3.columns
       %input#grand_total{type:'text', readonly:true}
     .small-7.columns
