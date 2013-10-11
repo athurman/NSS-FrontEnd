@@ -10,6 +10,7 @@ var db = {};
 db.stocks = [];
 db.statistics = {};
 db.statistics.balance = 0;
+db.statistics.total = 0;
 
 
 $(document).ready(initialize);
@@ -24,16 +25,20 @@ function initialize(){
   Δstocks = Δdb.child('stocks');
   Δstatistics = Δdb.child('statistics');
   Δstocks.on('child_added', stockAdded);
+  Δstatistics('child_added', statAdded);
 }
 
 function stockAdded(snapshot) {
-  debugger;
   var stock = snapshot.val();
   addItem(stock);
 
-  if(db.statistics.balance !== null) {
+  if(db.statistics.balance !== 0) {
     updateBalance(parseFloat(stock.total));
   }
+}
+
+function statAdded(snapshot) {
+  var stat = snapshot.val();
 }
 
 function getStockQuote(symbol, fn) {
@@ -47,7 +52,7 @@ function setFunds() {
   db.statistics.balance = funds;
 
   $('#balance').val('$' + funds);
-  Δstatistics.set(db.statistics.balance);
+  Δstatistics.set({'balance': db.statistics.balance});
 }
 
 function setStock() {
@@ -57,7 +62,8 @@ function setStock() {
 
     var symbol = data.Data.Symbol;
     var name = data.Data.Name;
-    var quote = parseFloat(data.Data.LastPrice);
+    var price = parseFloat(data.Data.LastPrice);
+    var quote = price.toFixed(2);
     var quantity = parseInt($('#quantity').val(), 10);
     var total = quote * quantity;
 
@@ -87,7 +93,7 @@ function addItem(stock) {
 function updateBalance(total) {
   db.statistics.balance -= total;
   $('#balance').val('$' + db.statistics.balance);
-  Δstatistics.set(db.statistics.balance);
+  Δstatistics.update({'balance': db.statistics.balance});
 }
 
 // function getData(data) {
