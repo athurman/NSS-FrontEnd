@@ -28,7 +28,7 @@
     .small-6.columns
   .row
     .small-3.columns
-      %h4.subheader Total:
+      %h4.subheader Total Stock Price:
     .small-3.columns
       %input#total{type:'text', readonly:true}
     .small-6.columns
@@ -44,10 +44,11 @@
   .row
     .small-12.columns
       %table#stock_list
-        %tr
+        %tr#home
           %th Symbol
           %th Name
-          %th Quote
+          %th Purchased Quote
+          %th Current Quote
           %th Purchased
           %th Total
 

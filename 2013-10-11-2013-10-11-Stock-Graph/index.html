@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width' name='viewport'>
+  <title>Stock Project</title>
+  <link href='css/normalize.css' rel='stylesheet'>
+  <link href='css/foundation.css' rel='stylesheet'>
+  <link href='css/app.css' rel='stylesheet'>
+  <script src='js/vendor/custom.modernizr.js'></script>
+</head>
+<body>
+  <div class='row'>
+    <div class='small-12 columns'>
+      <h1>Stock Photo</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-3 columns'>
+      <input autofocus id='funds' placeholder='Initial Funds' type='text'>
+    </div>
+    <div class='small-3 columns'>
+      <input class='button small radius' id='add_funds' type='button' value='Set Funds'>
+    </div>
+    <div class='small-3 columns'>
+      <input id='symbol' placeholder='AAPL' type='text'>
+    </div>
+    <div class='small-1 columns'>
+      <input id='quantity' placeholder='10' type='text'>
+    </div>
+    <div class='small-2 columns'>
+      <input class='button small radius' id='buy_stock' type='button' value='Buy Stock'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-12 columns' id='container'></div>
+  </div>
+  <script src='js/vendor/jquery-1.10.2.js'></script>
+  <script src='js/vendor/foundation.min.js'></script>
+  <script src='js/vendor/underscore.js'></script>
+  <script src='js/vendor/moment.min.js'></script>
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+  <script src='js/app/app.js'></script>
+</body>

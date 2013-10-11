@@ -8,10 +8,11 @@ var Δstatistics;
 // Local Schema
 var db = {};
 db.stocks = [];
-db.statistics = {};
-db.statistics.balance = 0;
-db.statistics.total = 0;
+db.stats = {};
+db.stats.funds = 0;
+db.stats.total = 0;
 
+var timer = 0;
 
 $(document).ready(initialize);
 
@@ -19,43 +20,37 @@ function initialize(){
   $(document).foundation();
   $('#add_funds').click(setFunds);
   $('#buy').click(setStock);
-  $('#add_interval').click(setInterval);
+  $('#add_interval').click(addTimer);
 
   Δdb = new Firebase('https://stock-market-at.firebaseio.com/');
   Δstocks = Δdb.child('stocks');
   Δstatistics = Δdb.child('statistics');
+  Δstatistics.on('value', balanceChanged);
   Δstocks.on('child_added', stockAdded);
-  Δstatistics('child_added', statAdded);
 }
 
 function stockAdded(snapshot) {
   var stock = snapshot.val();
   addItem(stock);
+  getTotal(stock);
 
-  if(db.statistics.balance !== 0) {
-    updateBalance(parseFloat(stock.total));
-  }
-}
-
-function statAdded(snapshot) {
-  var stat = snapshot.val();
+  db.stocks.push(stock);
 }
 
 function getStockQuote(symbol, fn) {
   var data = {};
-  data.symbol = $('#symbol').val();
+  data.symbol = symbol;
   $.getJSON('http://dev.markitondemand.com/Api/Quote/jsonp?callback=?', data, fn); // jQuery.getJSON( url [, data ] [, success( data, textStatus, jqXHR ) ] )
 }
 
 function setFunds() {
-  var funds = parseFloat($('#funds').val());
-  db.statistics.balance = funds;
-
-  $('#balance').val('$' + funds);
-  Δstatistics.set({'balance': db.statistics.balance});
+  db.stats.funds = parseFloat($('#funds').val());
+  $('#balance').val('$' + db.stats.funds);
+  Δstatistics.set(db.stats);
 }
 
 function setStock() {
+  var symbol = $('#symbol').val();
 
   getStockQuote(symbol, function(data){
     var stock = {};
@@ -64,52 +59,65 @@ function setStock() {
     var name = data.Data.Name;
     var price = parseFloat(data.Data.LastPrice);
     var quote = price.toFixed(2);
+    var currentPrice = parseFloat(data.Data.LastPrice);
     var quantity = parseInt($('#quantity').val(), 10);
     var total = quote * quantity;
 
     stock.symbol = symbol;
     stock.name = name;
     stock.boughtPrice = quote;
-    stock.purchased = quantity;
+    stock.currentPrice = currentPrice;
+    stock.itemsPurchased = quantity;
     stock.total = total;
 
     Δstocks.push(stock);
+
+    db.stats.funds -= total;
+    $('#balance').val('$' + db.stats.funds);
   });
 }
 
 function addItem(stock) {
-  var row = '<tr><td class="symbol"></td><td class="name"></td><td class="quote"></td><td class="purchased"></td><td class="total"></td></tr>';
+  var row = '<tr><td class="symbol"></td><td class="name"></td><td class="purchased_quote"></td><td class="current_quote"></td><td class="purchased"></td><td class="total"></td></tr>';
   var $row = $(row);
+  $row.addClass(stock.symbol).addClass('stock');
 
   $row.children('.symbol').text(stock.symbol);
   $row.children('.name').text(stock.name);
-  $row.children('.quote').text(stock.boughtPrice);
-  $row.children('.purchased').text(stock.purchased);
-  $row.children('.total').text(stock.total);
+  $row.children('.purchased_quote').text(stock.boughtPrice);
+  $row.children('.current_quote').text(stock.currentPrice);
+  $row.children('.purchased').text(stock.itemsPurchased);
+  $row.children('.total').text(stock.total.toFixed(2));
 
   $('#stock_list').append($row);
 }
 
-function updateBalance(total) {
-  db.statistics.balance -= total;
-  $('#balance').val('$' + db.statistics.balance);
-  Δstatistics.update({'balance': db.statistics.balance});
+function getTotal(stock) {
+  db.stats.total += (stock.boughtPrice * stock.itemsPurchased);
+  $('#total').val('$' + db.stats.total.toFixed(2));
+  Δstatistics.set(db.stats);
 }
 
-// function getData(data) {
-//   var stock = {};
+function balanceChanged(snapshot) {
+  var stats = snapshot.val();
+  db.stats.funds = stats.funds;
+  $('#balance').val('$' + db.stats.funds);
+}
 
-//   var symbol = data.Data.Symbol;
-//   var name = data.Data.Name;
-//   var quote = parseFloat(data.Data.LastPrice);
-//   var quantity = parseInt($('#quantity').val(), 10);
-//   var total = quote * quantity;
+function addTimer() {
+  var delay = parseFloat($('#interval').val());
+  var seconds = delay * 1000;
 
-//   stock.symbol = symbol;
-//   stock.name = name;
-//   stock.boughtPrice = quote;
-//   stock.purchased = quantity;
-//   stock.total = total;
+  timer = setInterval(updateStockPrice, seconds);
+}
 
-//   Δstocks.push(stock);
-// }
+function updateStockPrice() {
+
+  getStockQuote(db.stocks[0].symbol, function(data){
+    var currentPrice = parseFloat(data.Data.LastPrice);
+    $('#home').next().children('.current_quote').text('$' + currentPrice);
+
+
+  });
+}
+

@@ -1,0 +1,38 @@
+!!! 5
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+%head
+  %meta{charset: "utf-8"}
+  %meta{name: "viewport", content: "width=device-width"}
+  %title Stock Project
+  %link{rel: "stylesheet", href: "css/normalize.css"}
+  %link{rel: "stylesheet", href: "css/foundation.css"}
+  %link{rel: "stylesheet", href: "css/app.css"}
+  %script{src: "js/vendor/custom.modernizr.js"}
+%body
+  .row
+    .small-12.columns
+      %h1 Stock Photo
+  .row
+    .small-3.columns
+      %input#funds{type:'text', autofocus:true, placeholder:'Initial Funds'}
+    .small-3.columns
+      %input#add_funds.button.small.radius{type:'button', value:'Set Funds'}
+    .small-3.columns
+      %input#symbol{type:'text', placeholder:'AAPL'}
+    .small-1.columns
+      %input#quantity{type:'text', placeholder:'10'}
+    .small-2.columns
+      %input#buy_stock.button.small.radius{type:'button', value:'Buy Stock'}
+  .row
+    .small-12.columns#container
+
+
+
+
+  %script{src: 'js/vendor/jquery-1.10.2.js'}
+  %script{src: 'js/vendor/foundation.min.js'}
+  %script{src: 'js/vendor/underscore.js'}
+  %script{src: 'js/vendor/moment.min.js'}
+  %script{src: 'https://cdn.firebase.com/v0/firebase.js'}
+  %script{src: 'js/app/app.js'}
