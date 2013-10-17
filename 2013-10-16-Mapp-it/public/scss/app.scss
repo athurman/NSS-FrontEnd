@@ -1,0 +1,24 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #262426;
+  color:#BC9D73;
+}
+
+h1 {
+  text-align: center;
+  color:#BC9D73;
+  font-weight: 200;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 65%;
+  border: 1px solid black;
+  float: left;
+}
+
+#buttons {
+  width: 35%;
+  float: left;
+}
