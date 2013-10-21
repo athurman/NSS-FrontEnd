@@ -24,7 +24,8 @@ function initialize(){
   $('#start').click(clickStart);
   $('#stop').click(clickStop);
   $('#add_name').click(clickAddFavorite);
-  $('#refresh').click(clickRefresh);
+  Δpositions.remove();
+  Δfavorites.remove();
 }
 
 // -------------------------------------------------------------------- //
@@ -32,7 +33,7 @@ function initialize(){
 // -------------------------------------------------------------------- //
 
 function clickStart() {
-  var geoOptions = {enableHighAccuracy: true, maximumAge: 1000, timeout: 45000};
+  var geoOptions = {enableHighAccuracy: true, maximumAge: 5000, timeout: 45000};
   db.watchId = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
 }
 
@@ -44,14 +45,6 @@ function clickStop () {
 function clickAddFavorite (location) {
   var favOptions = {enableHighAccuracy: true, timeout: 45000, maximumAge: 0};
   db.watchFav = navigator.geolocation.getCurrentPosition(favSuccess, favError, favOptions);
-}
-
-function clickRefresh () {
-  Δpositions.remove();
-  Δfavorites.remove();
-  db.positions = [];
-  db.path = [];
-  db.favorites = [];
 }
 
 // -------------------------------------------------------------------- //

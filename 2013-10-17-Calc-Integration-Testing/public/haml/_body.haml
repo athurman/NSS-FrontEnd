@@ -1,0 +1,36 @@
+/#map-canvas
+.row
+  .small-12.columns
+    %h1 Calculate
+.row
+  .small-3.columns
+    %input#sum_results.button.small.radius{type:'button', value:'Sum Results'}
+  .small-3.columns
+    %input#product_results.button.small.radius{type:'button', value:'Product Results'}
+  .small-3.columns
+    %input#remove_negative.button.small.radius.success{type:'button', value:'Remove Negative'}
+  .small-3.columns
+    %input#remove_positive.button.small.radius.success{type:'button', value:'Remove Positive'}
+.row
+  .small-3.columns
+    #sum_of_results
+  .small-3.columns
+    #product_of_results
+  .small-6.columns
+.row
+  .small-2.columns
+  .small-2.columns
+    %input#op1{type:'text', placeholder:'3', autofocus:true}
+  .small-1.columns
+    %input#operator{type:'text', placeholder:'*'}
+  .small-2.columns
+    %input#op2{type:'text', placeholder:'2'}
+  .small-3.columns
+    %input#calculate.button.small.radius{type:'button', value:'Calculate'}
+  .small-2.columns
+.row
+  .small-6.columns
+    #result
+  .small-6.columns
+    %h3.subheader Paper Trail
+    %ul#history

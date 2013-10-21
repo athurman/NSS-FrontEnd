@@ -1,0 +1,46 @@
+body {
+  background-color: #5FC7A1;
+  color: #fff; }
+
+h1 {
+  color: #497F6B;
+  text-align: center;
+  text-shadow: 1px 1px 1px #74F2C4; }
+
+ul {
+  list-style: none; }
+
+li {
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: 10px; }
+
+li > span {
+  padding: 3px; }
+
+.op1 {
+  color: #fff;
+  padding-left: 15px; }
+
+.operator {
+  color: #FF5F59; }
+
+.result {
+  color: #3F95FF; }
+
+.op2 {
+  color: #fff; }
+
+.remove {
+  padding: 2px;
+  position: relative;
+  left: 275px; }
+
+.clear {
+  clear: both; }
+
+#history > li:nth-child(odd) {
+  background-color: #5FB4C7; }
+
+#history > li:nth-child(even) {
+  background-color: #5CB0A9; }

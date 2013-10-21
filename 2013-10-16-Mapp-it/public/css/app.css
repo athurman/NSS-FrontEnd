@@ -10,11 +10,11 @@ h1 {
   font-weight: 200; }
 
 #map-canvas {
-  height: 100%;
-  width: 65%;
+  height: 90%;
+  width: 100%;
   border: 1px solid black;
-  float: left; }
+  margin: 0 auto; }
 
 #buttons {
-  width: 35%;
-  float: left; }
+  height: 10%;
+  width: 100%; }
