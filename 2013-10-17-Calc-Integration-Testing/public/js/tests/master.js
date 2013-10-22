@@ -65,27 +65,27 @@ test('Remove LI with dynamic button', function(){
   deepEqual($('#history > li:first-child > span:nth-child(2)').text(), '+', 'first span in first li should be 3');
 });
 
-test('alternate background color', function(){
-  expect(2);
+// test('alternate background color', function(){
+//   expect(2);
 
-  $('#op1').val('3');
-  $('#op2').val('2');
-  $('#operator').val('+');
-  $('#calculate').trigger('click');
+//   $('#op1').val('3');
+//   $('#op2').val('2');
+//   $('#operator').val('+');
+//   $('#calculate').trigger('click');
 
-  $('#op1').val('7');
-  $('#op2').val('8');
-  $('#operator').val('*');
-  $('#calculate').trigger('click');
+//   $('#op1').val('7');
+//   $('#op2').val('8');
+//   $('#operator').val('*');
+//   $('#calculate').trigger('click');
 
-  $('#op1').val('2');
-  $('#op2').val('4');
-  $('#operator').val('*');
-  $('#calculate').trigger('click');
+//   $('#op1').val('2');
+//   $('#op2').val('4');
+//   $('#operator').val('*');
+//   $('#calculate').trigger('click');
 
-  deepEqual($('#history > li:first-child').css('background'), 'rgb(95, 180, 199) none repeat scroll 0% 0% / auto padding-box border-box', 'bg color should be grey');
-  deepEqual($('#history > li:nth-child(2)').css('background'), 'rgb(92, 176, 169) none repeat scroll 0% 0% / auto padding-box border-box', 'bg color should be grey');
-});
+//   deepEqual($('#history > li:first-child').css('background'), 'rgb(95, 180, 199) none repeat scroll 0% 0% / auto padding-box border-box', 'bg color should be grey');
+//   deepEqual($('#history > li:nth-child(2)').css('background'), 'rgb(92, 176, 169) none repeat scroll 0% 0% / auto padding-box border-box', 'bg color should be grey');
+// });
 
 test('sum of results', function(){
   expect(1);

@@ -4,7 +4,7 @@
 <head>
   <meta charset='utf-8'>
   <meta content='width=device-width' name='viewport'>
-  <title>Master Template</title>
+  <title>Grading App</title>
   <link href='/css/normalize.css' rel='stylesheet'>
   <link href='/css/foundation.css' rel='stylesheet'>
   <link href='/css/app.css' rel='stylesheet'>
@@ -15,58 +15,43 @@
 <body>
   <div id='qunit'></div>
   <div id='qunit-fixture'>
-    <!-- #map-canvas -->
     <div class='row'>
-      <div class='small-12 columns'>
-        <h1>Calculate</h1>
+      <div class='small-3 columns'>
+        <input id='school' type='text'>
+      </div>
+      <div class='small-3 columns'>
+        <input id='length' type='text'>
+      </div>
+      <div class='small-3 columns'>
+        <input id='width' type='text'>
+      </div>
+      <div class='small-3 columns'>
+        <input class='small button radius' id='add-school' type='button' value='Add School'>
       </div>
     </div>
     <div class='row'>
       <div class='small-3 columns'>
-        <input class='button small radius' id='sum_results' type='button' value='Sum Results'>
+        <input id='student' type='text'>
       </div>
       <div class='small-3 columns'>
-        <input class='button small radius' id='product_results' type='button' value='Product Results'>
+        <input id='gpa' type='text'>
       </div>
       <div class='small-3 columns'>
-        <input class='button small radius success' id='remove_negative' type='button' value='Remove Negative'>
+        <select id='pick-school'></select>
       </div>
       <div class='small-3 columns'>
-        <input class='button small radius success' id='remove_positive' type='button' value='Remove Positive'>
+        <input class='button small radius' id='add-student' type='button' value='Add Student'>
       </div>
     </div>
     <div class='row'>
-      <div class='small-3 columns'>
-        <div id='sum_of_results'></div>
-      </div>
-      <div class='small-3 columns'>
-        <div id='product_of_results'></div>
-      </div>
-      <div class='small-6 columns'></div>
-    </div>
-    <div class='row'>
-      <div class='small-2 columns'></div>
       <div class='small-2 columns'>
-        <input autofocus id='op1' placeholder='3' type='text'>
-      </div>
-      <div class='small-1 columns'>
-        <input id='operator' placeholder='*' type='text'>
+        <input id='subject' type='text'>
       </div>
       <div class='small-2 columns'>
-        <input id='op2' placeholder='2' type='text'>
-      </div>
-      <div class='small-3 columns'>
-        <input class='button small radius' id='calculate' type='button' value='Calculate'>
-      </div>
-      <div class='small-2 columns'></div>
-    </div>
-    <div class='row'>
-      <div class='small-6 columns'>
-        <div id='result'></div>
+        <select id='pick-student'></select>
       </div>
       <div class='small-6 columns'>
-        <h3 class='subheader'>Paper Trail</h3>
-        <ul id='history'></ul>
+        <input class='button small radius' id='add-subject' type='button' value='Add Subject'>
       </div>
     </div>
   </div>
@@ -74,7 +59,7 @@
   <script src='/js/vendor/foundation.min.js'></script>
   <script src='/js/vendor/underscore.js'></script>
   <script src='/js/vendor/moment.min.js'></script>
-  <!-- <script src='https://cdn.firebase.com/v0/firebase.js'></script> -->
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>
   <!-- %script{src: 'https://maps.googleapis.com/maps/api/js?key=__________&sensor=true'} -->
   <script src='/js/app/app.js'></script>
   <script src='/js/vendor/jquery.domchanged.js'></script>
