@@ -1,0 +1,39 @@
+.row
+  .small-12.columns
+    %h1 Shopper
+.row
+  .small-6.columns
+    %label{for:'product-image'} Product Image:
+    %input#product-image{type:'text', autofocus:true, placeholder:'image.png'}
+  .small-6.columns
+    %label{for:'product-name'} Product Name:
+    %input#product-name{type:'text', placeholder:'iPad Air'}
+.row
+  .small-6.columns
+    %label{for:'product-price'} Product Price:
+    %input#product-price{type:'text', placeholder:'499.00'}
+  .small-6.columns
+    %label{for:'percent-off'} Discount Percentage:
+    %input#percent-off{type:'text', placeholder:'15'}
+.row
+  .small-6.columns
+    %label{for:'product-weight'} Product weight:
+    %input#product-weight{type:'text', placeholder:'5.5'}
+  .small-6.columns
+    %input#add-product.button.radius.expand{type:'button', value:'Create Product'}
+.row
+  .small-12.columns
+    %table#products
+      %tr#row-header
+        %th Name
+        %th Image
+        %th Weight
+        %th Price
+        %th Discount
+        %th Sale Price
+.row
+  .small-2.columns
+    %span#previous.hidden <-- Previous
+  .small-8.columns
+  .small-2.columns
+    %span#next.hidden Next -->

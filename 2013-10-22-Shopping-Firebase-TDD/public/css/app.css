@@ -1,0 +1,9 @@
+#products {
+  margin: 0 auto; }
+
+.product-image {
+  height: 60px;
+  width: 100px; }
+
+.hidden {
+  visibility: hidden; }
