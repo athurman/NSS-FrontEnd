@@ -37,3 +37,18 @@
   .small-8.columns
   .small-2.columns
     %span#next.hidden Next -->
+.row
+  %h3.subheader Add Customer
+.row
+  .small-2.columns
+    %input#domestic{type:'radio', name:'address', value:'domestic'} Domestic
+  .small-2.columns
+    %input#international{type:'radio', name:'address', value:'international'} International
+  .small-3.columns
+    %label{for:'product-image'} Customer Image:
+    %input#customer-image{type:'text', placeholder:'image.png'}
+  .small-3.columns
+    %label{for:'customer-name'} Customer Name:
+    %input#customer-name{type:'text', placeholder:'Bob Jenkins'}
+  .small-2.columns
+    %input#add-customer.button.radius.expand{type:'button', value:'Add Customer'}

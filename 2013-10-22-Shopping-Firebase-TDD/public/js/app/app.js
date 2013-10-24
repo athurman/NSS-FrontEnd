@@ -47,12 +47,16 @@ function initializeDatabase(){
 
 function turnHandlersOn(){
   $('#add-product').on('click', clickAddProduct);
-  $('#next').on('click', clickNext);
+  $('#previous').on('click', clickNavigation);
+  $('#next').on('click', clickNavigation);
+  $('#add-customer').on('click', clickAddCustomer);
 }
 
 function turnHandlersOff(){
   $('#add-product').off('click');
+  $('#previous').off('click');
   $('#next').off('click');
+  $('#add-customer').off('click');
 }
 
 // -------------------------------------------------------------------- //
@@ -71,18 +75,33 @@ function clickAddProduct() {
   Δproducts.push(product);
 }
 
-function clickNext() {
-  db.pagination.currentPage++;
+function clickAddCustomer() {
+  var image = getValue('#customer-image');
+  var name = getValue('#customer-name');
+  var isDomestic = $('#domestic')[0].checked;
+  resetRadio();
+
+  var customer = new Customer(image, name, isDomestic);
+  Δcustomers.push(customer);
+}
+
+function clickNavigation(){
   db.pagination.currentRowCount = 0;
-  $('.product-row').remove();
+  htmlDeleteRows();
+
+  var isPrevious = this.id === 'previous';
+  db.pagination.currentPage += isPrevious ? -1 : +1;
+
   var startIndex = db.pagination.perPage * (db.pagination.currentPage - 1);
   var endLength = (startIndex + db.pagination.perPage) > db.products.length ? db.products.length : startIndex + db.pagination.perPage;
-  for(var i = startIndex; i < endLength; i++) {
-    htmlAddRow(db.products[i]);
-  }
+  var isLess = startIndex > 0;
+  var isMore = db.products.length > endLength;
 
-  if(db.pagination.currentPage > 1) {
-    htmlShowPrevButton();
+  htmlShowHideNavigation('#previous', isLess);
+  htmlShowHideNavigation('#next', isMore);
+
+  for(var i = startIndex; i < endLength; i++){
+    htmlAddRow(db.products[i]);
   }
 }
 
@@ -99,6 +118,12 @@ function Product(image, name, price, discount, weight) {
   this.salePrice = function() {return this.price - (this.price * this.discount);};
 }
 
+function Customer(image, name, isDomestic) {
+  this.img = image;
+  this.name = name;
+  this.isDomestic = isDomestic;
+}
+
 // -------------------------------------------------------------------- //
 // -------------------------------------------------------------------- //
 // -----------------------DB FUNCTIONS BELOW--------------------------- //
@@ -108,15 +133,18 @@ function dbProductAdded(snapshot) {
   var product = new Product(obj.img, obj.name, obj.price, obj.discount, obj.weight);
   product.id = snapshot.name();
   db.products.push(product);
-  if(db.pagination.currentRowCount < db.pagination.perPage) {
+  if(db.pagination.currentRowCount < db.pagination.perPage){
     htmlAddRow(product);
   } else {
-    htmlShowNextButton();
+    htmlShowHideNavigation('#next', true);
   }
 }
 
 function dbCustomerAdded(snapshot) {
-
+  var obj = snapshot.val();
+  var customer = new Customer(obj.img, obj.name, obj.isDomestic);
+  customer.id = snapshot.name();
+  db.customers.push(customer);
 }
 
 function dbOrderAdded(snapshot) {
@@ -145,22 +173,21 @@ function htmlAddRow(product) {
   $('#products').append($row);
 }
 
-function htmlShowNextButton() {
-  if($('#next').hasClass('hidden')) {
-    $('#next').removeClass('hidden');
+function htmlShowHideNavigation(selector, shouldShow){
+  $(selector).removeClass('hidden');
+
+  if(!shouldShow){
+    $(selector).addClass('hidden');
   }
 }
 
-function htmlHideNextButton() {
-  if(!$('#next').hasClass('hidden')) {
-    $('#next').addClass('hidden');
-  }
+function htmlDeleteRows() {
+  $('.product-row').remove();
 }
 
-function htmlShowPrevButton() {
-  if($('#previous').hasClass('hidden')) {
-    $('#previous').removeClass('hidden');
-  }
+function resetRadio() {
+  $('#domestic')[0].checked = false;
+  $('#international')[0].checked = false;
 }
 
 // -------------------------------------------------------------------- //
