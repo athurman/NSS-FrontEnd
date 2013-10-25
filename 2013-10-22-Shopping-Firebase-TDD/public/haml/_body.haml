@@ -2,25 +2,23 @@
   .small-12.columns
     %h1 Shopper
 .row
-  .small-6.columns
+  .small-2.columns
     %label{for:'product-image'} Product Image:
     %input#product-image{type:'text', autofocus:true, placeholder:'image.png'}
-  .small-6.columns
+  .small-2.columns
     %label{for:'product-name'} Product Name:
     %input#product-name{type:'text', placeholder:'iPad Air'}
-.row
-  .small-6.columns
+  .small-2.columns
     %label{for:'product-price'} Product Price:
     %input#product-price{type:'text', placeholder:'499.00'}
-  .small-6.columns
+  .small-2.columns
     %label{for:'percent-off'} Discount Percentage:
     %input#percent-off{type:'text', placeholder:'15'}
-.row
-  .small-6.columns
+  .small-2.columns
     %label{for:'product-weight'} Product weight:
     %input#product-weight{type:'text', placeholder:'5.5'}
-  .small-6.columns
-    %input#add-product.button.radius.expand{type:'button', value:'Create Product'}
+  .small-2.columns
+    %input#add-product.button.radius.small.expand{type:'button', value:'Create Product'}
 .row
   .small-12.columns
     %table#products
@@ -40,10 +38,6 @@
 .row
   %h3.subheader Add Customer
 .row
-  .small-2.columns
-    %input#domestic{type:'radio', name:'address', value:'domestic'} Domestic
-  .small-2.columns
-    %input#international{type:'radio', name:'address', value:'international'} International
   .small-3.columns
     %label{for:'product-image'} Customer Image:
     %input#customer-image{type:'text', placeholder:'image.png'}
@@ -51,4 +45,36 @@
     %label{for:'customer-name'} Customer Name:
     %input#customer-name{type:'text', placeholder:'Bob Jenkins'}
   .small-2.columns
-    %input#add-customer.button.radius.expand{type:'button', value:'Add Customer'}
+    %input#domestic{type:'radio', name:'address', value:'domestic'} Domestic
+  .small-2.columns
+    %input#international{type:'radio', name:'address', value:'international'} International
+  .small-2.columns
+    %input#add-customer.button.radius.small.expand{type:'button', value:'Add Customer'}
+.row
+  %h3.subheader Purchase Cart
+.row
+  .small-3.columns
+    %label{for:'select-customer'} Select Customer:
+    %select#select-customer
+  .small-6.columns
+  .small-3.columns
+    %input#purchase.button.radius.small{type:'button', value:'Purchase'}
+.row
+  .small-12.columns
+    %table#cart
+      %thead
+        %tr
+          %th Item Name
+          %th Item Count
+          %th Price Amount
+          %th Item Weight
+          %th Item Shipping Cost
+          %th Item Total
+        %tbody
+        %tfoot
+          %tr
+            %td#cart-count
+            %td#cart-amount
+            %td#cart-weight
+            %td#cart-shipping
+            %td#cart-grand

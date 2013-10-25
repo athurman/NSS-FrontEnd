@@ -18,32 +18,28 @@
     </div>
   </div>
   <div class='row'>
-    <div class='small-6 columns'>
+    <div class='small-2 columns'>
       <label for='product-image'>Product Image:</label>
       <input autofocus id='product-image' placeholder='image.png' type='text'>
     </div>
-    <div class='small-6 columns'>
+    <div class='small-2 columns'>
       <label for='product-name'>Product Name:</label>
       <input id='product-name' placeholder='iPad Air' type='text'>
     </div>
-  </div>
-  <div class='row'>
-    <div class='small-6 columns'>
+    <div class='small-2 columns'>
       <label for='product-price'>Product Price:</label>
       <input id='product-price' placeholder='499.00' type='text'>
     </div>
-    <div class='small-6 columns'>
+    <div class='small-2 columns'>
       <label for='percent-off'>Discount Percentage:</label>
       <input id='percent-off' placeholder='15' type='text'>
     </div>
-  </div>
-  <div class='row'>
-    <div class='small-6 columns'>
+    <div class='small-2 columns'>
       <label for='product-weight'>Product weight:</label>
       <input id='product-weight' placeholder='5.5' type='text'>
     </div>
-    <div class='small-6 columns'>
-      <input class='button radius expand' id='add-product' type='button' value='Create Product'>
+    <div class='small-2 columns'>
+      <input class='button radius small expand' id='add-product' type='button' value='Create Product'>
     </div>
   </div>
   <div class='row'>
@@ -73,12 +69,6 @@
     <h3 class='subheader'>Add Customer</h3>
   </div>
   <div class='row'>
-    <div class='small-2 columns'>
-      <input id='domestic' name='address' type='radio' value='domestic'>Domestic</input>
-    </div>
-    <div class='small-2 columns'>
-      <input id='international' name='address' type='radio' value='international'>International</input>
-    </div>
     <div class='small-3 columns'>
       <label for='product-image'>Customer Image:</label>
       <input id='customer-image' placeholder='image.png' type='text'>
@@ -88,7 +78,52 @@
       <input id='customer-name' placeholder='Bob Jenkins' type='text'>
     </div>
     <div class='small-2 columns'>
-      <input class='button radius expand' id='add-customer' type='button' value='Add Customer'>
+      <input id='domestic' name='address' type='radio' value='domestic'>Domestic</input>
+    </div>
+    <div class='small-2 columns'>
+      <input id='international' name='address' type='radio' value='international'>International</input>
+    </div>
+    <div class='small-2 columns'>
+      <input class='button radius small expand' id='add-customer' type='button' value='Add Customer'>
+    </div>
+  </div>
+  <div class='row'>
+    <h3 class='subheader'>Purchase Cart</h3>
+  </div>
+  <div class='row'>
+    <div class='small-3 columns'>
+      <label for='select-customer'>Select Customer:</label>
+      <select id='select-customer'></select>
+    </div>
+    <div class='small-6 columns'></div>
+    <div class='small-3 columns'>
+      <input class='button radius small' id='purchase' type='button' value='Purchase'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-12 columns'>
+      <table id='cart'>
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Item Count</th>
+            <th>Price Amount</th>
+            <th>Item Weight</th>
+            <th>Item Shipping Cost</th>
+            <th>Item Total</th>
+          </tr>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td id='cart-count'></td>
+              <td id='cart-amount'></td>
+              <td id='cart-weight'></td>
+              <td id='cart-shipping'></td>
+              <td id='cart-grand'></td>
+            </tr>
+          </tfoot>
+        </thead>
+      </table>
     </div>
   </div>
   <script src='/js/vendor/jquery-1.10.2.js'></script>

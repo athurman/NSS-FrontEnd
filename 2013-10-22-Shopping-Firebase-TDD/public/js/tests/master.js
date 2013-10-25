@@ -6,11 +6,7 @@ function setupTest(){
   turnHandlersOff();
   turnHandlersOn();
   // Reset Global Variables Here
-  db.products = [];
-  db.customers = [];
-  db.orders = [];
-  db.pagination.currentPage = 1;
-  db.pagination.currentRowCount =0;
+  initializeSchema();
   // Clean Out Test Database Here
   Δdb.remove();
 }
@@ -125,3 +121,81 @@ test('Add Customer', function(){
   // ok('result-that-is-true-or-false', 'description of assertion');
   // deepEqual('actual-result', 'expected-result', 'description of assertion');
 });
+
+test('Customer DropDown and Shopping Cart', function(){
+  expect(7);
+
+  for(var i = 0; i < 5; i++) {
+    var name = Math.random().toString(36).substring(2);
+    var image = Math.random().toString(36).substring(2) + '.png';
+    var isDomestic = _.shuffle([true, false])[0];
+
+    createTestCustomer(name, image, isDomestic);
+  }
+
+  createTestCustomer('Bob', 'bob.png', true);
+  equal(db.customers.length, 6, 'should have 6 customers');
+  equal($('select#select-customer option').length, 6, 'should have 6 option tags');
+  equal($('select#select-customer option:nth-child(1)').val(), 'Bob', 'first option should be bob');
+  equal($('select#select-customer option:nth-child(1)').text(), 'Bob', 'first option text should be bob');
+  ok($('table#cart').length, 'shopping cart should be visible');
+  equal($('table#cart th').length, 6, 'should be 6 columns'); // table headers: Name, Count, Amount, Weight, Shipping Cost, Total
+  ok($('#purchase').length, 'purchase button should be visible');
+});
+
+test('Add Items to Shopping Cart', function(){
+  expect(19);
+  createTestProduct('iPad Air', 'ipad-air.png', 1, 500.00, 10); // saleprice: 450
+  createTestProduct('iPhone 5S', 'iphone-5s.png', 0.5, 200.00, 0); // saleprice: 200
+  createTestProduct('Apple TV', 'apple-tv.png', 1.5, 100.00, 5); // saleprice: 95
+
+  createTestCustomer('Bob', 'bob.png', true);
+  createTestCustomer('Sally', 'sally.png', false);
+
+  $('#select-customer').val('Sally');
+  $('select#select-customer').trigger('change');
+
+  // 2 iPhone 5S Products added to Cart
+  $('#products tr:nth-child(3) .product-img img').trigger('click');
+  $('#products tr:nth-child(3) .product-img img').trigger('click');
+  // 1 iPad Air
+  $('#products tr:nth-child(2) .product-img img').trigger('click');
+  // 1 Apple TV
+  $('#products tr:nth-child(4) .product-img img').trigger('click');
+
+  equal(db.cart.customer.name, 'Sally', 'Sally is ordering');
+  ok(db.cart.customer instanceof Customer, 'Sally should be a customer');
+  equal(db.cart.products.length, 4, 'should be 4 items in shopping cart');
+  ok(db.cart.products[0] instanceof Product, 'should be instance of product');
+  equal(db.cart.totals.count(), 4, '4 should be the total number of items in cart');
+  equal(db.cart.totals.amount(), 945, 'the total price of items is 945');
+  equal(db.cart.totals.weight(), 3.5, 'weight total should be 3.5');
+
+  // domestic: .50 lb / international $1.50 lb
+  equal(db.cart.totals.shipping(), 5.25, 'total shipping should be 5.25');
+  equal(db.cart.totals.grand(), 950.25, 'grand total should be 950.25');
+
+  equal($('#cart thead tr').length, 1, 'should be a header');
+  equal($('#cart tfoot tr').length, 1, 'should be a footer');
+  equal($('#cart tbody tr').length, 3, 'should be 3 items in body');
+
+  equal($('#cart tbody tr:nth-child(1) .product-name').text(), 'iPhone 5S', 'name should be iphone 5s');
+  equal($('#cart tbody tr:nth-child(1) .product-count').text(), '2', 'count should be 2');
+
+  equal($('#cart tfoot tr #cart-count').text(), '4', 'should have 4 items in cart');
+  equal($('#cart tfoot tr #cart-amount').text(), '$945.00', 'should have $945.00 in amount');
+  equal($('#cart tfoot tr #cart-weight').text(), '3.50 lbs', 'should have 3.5 lbs for weight');
+  equal($('#cart tfoot tr #cart-shipping').text(), '$5.25', 'should have $5.25 for shipping');
+  equal($('#cart tfoot tr #cart-grand').text(), '$950.25', 'should have $950.25 for grand');
+});
+
+function createTestCustomer(name, image, isDomestic){
+  $('#customer-image').val(image);
+  $('#customer-name').val(name);
+  if(isDomestic) {
+    $('#domestic')[0].checked = true;
+  } else {
+    $('#international')[0].checked = true;
+  }
+  $('#add-customer').trigger('click');
+}
