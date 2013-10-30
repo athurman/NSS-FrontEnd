@@ -1,0 +1,25 @@
+extends ../template/layout
+
+block content
+  h1 ToDo List
+  a(href='/') Home
+  a(href='/list/new') New
+  - var item = items[0]
+  if item
+    table#items
+      thead: tr
+        each value, property in item
+          th= property
+        th completed
+      tbody
+        each item, index in items
+          tr(id=item.name)
+            each value, property in item
+              if property == 'color'
+                td(class=property, style='background-color:#{value}')
+              else
+                td(class=property)=value
+            td.completed
+              input(type='checkbox' class='check')
+                //- if input.check(type='checkbox', checked=checked) === true
+                //-   td.completed(style='background-color: red')

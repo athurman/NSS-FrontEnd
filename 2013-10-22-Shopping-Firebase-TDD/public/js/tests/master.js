@@ -14,6 +14,26 @@ function setupTest(){
 function teardownTest(){
 }
 
+function createTestProduct(name, image, weight, price, discount){
+  $('#product-image').val(image);
+  $('#product-name').val(name);
+  $('#product-weight').val(weight);
+  $('#product-price').val(price);
+  $('#percent-off').val(discount);
+  $('#add-product').trigger('click');
+}
+
+function createTestCustomer(name, image, isDomestic){
+  $('#customer-image').val(image);
+  $('#customer-name').val(name);
+  if(isDomestic) {
+    $('#domestic')[0].checked = true;
+  } else {
+    $('#international')[0].checked = true;
+  }
+  $('#add-customer').trigger('click');
+}
+
 test('Add Product', function(){
   expect(12);
 
@@ -92,15 +112,6 @@ test('Product Pagination', function(){
   equal($('#next:not(.hidden)').length, 1, 'next button should not be hidden');
 });
 
-function createTestProduct(name, image, weight, price, discount){
-  $('#product-image').val(image);
-  $('#product-name').val(name);
-  $('#product-weight').val(weight);
-  $('#product-price').val(price);
-  $('#percent-off').val(discount);
-  $('#add-product').trigger('click');
-}
-
 test('Add Customer', function(){
   expect(7);
 
@@ -135,7 +146,7 @@ test('Customer DropDown and Shopping Cart', function(){
 
   createTestCustomer('Bob', 'bob.png', true);
   equal(db.customers.length, 6, 'should have 6 customers');
-  equal($('select#select-customer option').length, 6, 'should have 6 option tags');
+  equal($('select#select-customer option').length, 7, 'should have 6 option tags');
   equal($('select#select-customer option:nth-child(1)').val(), 'Bob', 'first option should be bob');
   equal($('select#select-customer option:nth-child(1)').text(), 'Bob', 'first option text should be bob');
   ok($('table#cart').length, 'shopping cart should be visible');
@@ -189,13 +200,44 @@ test('Add Items to Shopping Cart', function(){
   equal($('#cart tfoot tr #cart-grand').text(), '$950.25', 'should have $950.25 for grand');
 });
 
-function createTestCustomer(name, image, isDomestic){
-  $('#customer-image').val(image);
-  $('#customer-name').val(name);
-  if(isDomestic) {
-    $('#domestic')[0].checked = true;
-  } else {
-    $('#international')[0].checked = true;
-  }
-  $('#add-customer').trigger('click');
-}
+test('Add Order', function(){
+  expect(14);
+
+  createTestProduct('iPad Air', 'ipad-air.png', 1, 500.00, 10); // saleprice: 450
+  createTestProduct('iPhone 5S', 'iphone-5s.png', 0.5, 200.00, 0); // saleprice: 200
+  createTestProduct('Apple TV', 'apple-tv.png', 1.5, 100.00, 5); // saleprice: 95
+
+  createTestCustomer('Bob', 'bob.png', true);
+  createTestCustomer('Sally', 'sally.png', false);
+
+  $('#select-customer').val('Sally');
+  $('select#select-customer').trigger('change');
+
+  // 2 iPhone 5S Products added to Cart
+  $('#products tr:nth-child(3) .product-img img').trigger('click');
+  $('#products tr:nth-child(3) .product-img img').trigger('click');
+  // 1 iPad Air
+  $('#products tr:nth-child(2) .product-img img').trigger('click');
+  // 1 Apple TV
+  $('#products tr:nth-child(4) .product-img img').trigger('click');
+
+  $('#purchase').trigger('click');
+
+  equal($('#cart tbody tr').length, 0, 'should be no rows in tbody after purchasae');
+  equal($('#cart-grand').text(), '', 'should be no grand total after purchase');
+  equal($('#select-customer').val(), 'default', 'dropdown value should be default');
+  equal(db.orders.length, 1, 'should be one order after purchase');
+  ok(db.orders[0] instanceof Order, 'should be an order instance');
+  ok(db.orders[0].id, 'should have an ID after purchase');
+  equal($('#orders thead th').length, 7, 'should have 7 columns in orders table');
+  equal($('#orders tbody tr').length, 1, 'should have 1 row in orders table body');
+  equal($('#orders tbody .order-time').text().split(' ').length, 5, 'date time should be formatted');
+  equal($('#orders tbody .order-customer').text(), 'Sally', 'Should have customers name');
+  equal($('#orders tbody .order-total').text(), '$945.00', 'Should have customers total');
+  equal($('#orders tbody .order-shipping').text(), '$5.25', 'Should have customers shipping');
+  equal($('#orders tbody .order-grand').text(), '$950.25', 'Should have customers grand');
+  equal($('#orders tbody .order-products-list li').length, 4, 'should have 4 items in order.');
+});
+
+
+

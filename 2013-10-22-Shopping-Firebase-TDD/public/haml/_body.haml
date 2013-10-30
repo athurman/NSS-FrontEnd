@@ -56,6 +56,7 @@
   .small-3.columns
     %label{for:'select-customer'} Select Customer:
     %select#select-customer
+      %option{value:'default'} Select Customer
   .small-6.columns
   .small-3.columns
     %input#purchase.button.radius.small{type:'button', value:'Purchase'}
@@ -73,8 +74,33 @@
         %tbody
         %tfoot
           %tr
+            %td
             %td#cart-count
             %td#cart-amount
             %td#cart-weight
             %td#cart-shipping
             %td#cart-grand
+.row
+  %h3.subheader Orders
+.row
+  .small-12.columns
+    %table#orders
+      %thead
+        %tr
+          %th Order ID
+          %th Time Ordered
+          %th Customer
+          %th Products Ordered
+          %th Order Total
+          %th Shipping Costs
+          %th Grand Total
+        %tbody
+        %tfoot
+          %tr
+            %td
+            %td
+            %td
+            %td
+            %td
+            %td Revenue:
+            %td#revenue

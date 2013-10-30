@@ -1,0 +1,19 @@
+extends ../template/layout
+
+block content
+  h1 Address Book
+  h2 People Page
+  a(href='/') Home
+  a(href='/people/new') New
+  - var person = people[0]
+
+  if person
+    table#people
+      thead: tr
+        each value, property in person
+          th= property
+      tbody
+        each person, index in people
+          tr(id='#{person.name}-#{index}',style='background-color: #{person.color}')
+            each value, property in person
+              td(class=property)= value

@@ -96,7 +96,9 @@
     <div class='row'>
       <div class='small-3 columns'>
         <label for='select-customer'>Select Customer:</label>
-        <select id='select-customer'></select>
+        <select id='select-customer'>
+          <option value='default'>Select Customer</option>
+        </select>
       </div>
       <div class='small-6 columns'></div>
       <div class='small-3 columns'>
@@ -118,11 +120,44 @@
             <tbody></tbody>
             <tfoot>
               <tr>
+                <td></td>
                 <td id='cart-count'></td>
                 <td id='cart-amount'></td>
                 <td id='cart-weight'></td>
                 <td id='cart-shipping'></td>
                 <td id='cart-grand'></td>
+              </tr>
+            </tfoot>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class='row'>
+      <h3 class='subheader'>Orders</h3>
+    </div>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <table id='orders'>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Time Ordered</th>
+              <th>Customer</th>
+              <th>Products Ordered</th>
+              <th>Order Total</th>
+              <th>Shipping Costs</th>
+              <th>Grand Total</th>
+            </tr>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Revenue:</td>
+                <td id='revenue'></td>
               </tr>
             </tfoot>
           </thead>

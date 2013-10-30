@@ -1,0 +1,7 @@
+extends ../template/layout
+block content
+  h1 Color Page
+   //- action is the post you are sending the url to. method is your verb. -//
+  form(action='/colors', method='post')
+    input(name='color', type='text', placeholder='#ff33cc', autofocus='true')
+    button(type='submit') Save Color

@@ -20,6 +20,7 @@ function initializeSchema() {
   db.products = [];
   db.customers = [];
   db.orders = [];
+  db.orders.revenue = 0;
 
   db.pagination = {};
   db.pagination.perPage = 5;
@@ -27,13 +28,6 @@ function initializeSchema() {
   db.pagination.currentRowCount = 0;
 
   db.cart = new Cart();
-  // db.cart = {};
-  // db.cart.products = [];
-  // db.cart.totals = {};
-  // db.cart.totals.amount = 0;
-  // db.cart.totals.weight = 0;
-  // db.cart.totals.shipping = 0;
-  // db.cart.totals.grand = 0;
 }
 // -------------------------------------------------------------------- //
 // -------------------------------------------------------------------- //
@@ -69,6 +63,7 @@ function turnHandlersOn(){
   $('#add-customer').on('click', clickAddCustomer);
   $('#products').on('click', 'img', clickProducttoCart);
   $('#select-customer').on('change', changeCustomer);
+  $('#purchase').on('click', clickAddOrder);
 }
 
 function turnHandlersOff(){
@@ -78,6 +73,7 @@ function turnHandlersOff(){
   $('#add-customer').off('click');
   $('#products').off('click');
   $('#select-customer').off('change');
+  $('#purchase').off('click');
 }
 
 // -------------------------------------------------------------------- //
@@ -141,6 +137,29 @@ function changeCustomer() {
   var customer = _.find(db.customers, function(cust){return cust.name === name;});
   db.cart.customer = customer;
 }
+
+function clickAddOrder() {
+  if(db.cart) {
+    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    var customer = db.cart.customer;
+    var products = db.cart.products;
+    var amount = db.cart.totals.amount();
+    var shipping = db.cart.totals.shipping();
+    var grand = db.cart.totals.grand();
+    var weight = db.cart.totals.weight();
+
+    for(var i = 0; i < products.length; i++) {
+      var product = products[i];
+      delete product.salePrice;
+    }
+
+    var order = new Order(time, customer, products, amount, weight, shipping, grand);
+    Δorders.push(order);
+    db.cart = new Cart();
+    htmlResetCart();
+  }
+}
+
 // -------------------------------------------------------------------- //
 // -------------------------------------------------------------------- //
 // -----------------------OBJECT HANDLERS BELOW------------------------ //
@@ -160,7 +179,7 @@ function Customer(image, name, isDomestic) {
   this.isDomestic = isDomestic;
 }
 
-function Cart(){
+function Cart() {
   var save = this; // save variable saves "this" to point at the Cart object, so to use in deeper functions.
   // if you create a local variable in a function, it is thrown away.
   // because we are using this variable within another function (ex. this.totals.amount), it is considered a Closure.
@@ -174,6 +193,16 @@ function Cart(){
   this.totals.weight = function(){return _.reduce(save.products, function(memo, product){return memo + product.weight;}, 0);};
   this.totals.shipping = function(){return this.weight() * (save.customer.isDomestic ? db.constants.domesticShipping : db.constants.internationalShipping);}; // save is global compared to what is outside this particular local function.
   this.totals.grand = function(){return this.amount() + this.shipping();};
+}
+
+function Order(time, customer, products, amount, weight, shipping, grand) {
+  this.time = time;
+  this.customer = customer;
+  this.products = products;
+  this.amount = amount;
+  this.weight = weight;
+  this.shipping = shipping;
+  this.grand = grand;
 }
 
 // -------------------------------------------------------------------- //
@@ -201,7 +230,21 @@ function dbCustomerAdded(snapshot) {
 }
 
 function dbOrderAdded(snapshot) {
+  var obj = snapshot.val();
+  var order = new Order(obj.time, obj.customer, obj.products, obj.amount, obj.weight, obj.shipping, obj.grand);
+  var products = order.products;
+  order.products = [];
+  order.id = snapshot.name();
 
+  for(var i = 0; i < products.length; i++) {
+    var product = new Product(products[i].img, products[i].name, products[i].price, products[i].discount, products[i].weight);
+    order.products.push(product);
+  }
+
+  db.orders.push(order);
+  htmlAddOrderRow(order);
+  db.orders.revenue += order.grand;
+  $('#revenue').text(formatCurrency(db.orders.revenue));
 }
 
 // -------------------------------------------------------------------- //
@@ -247,6 +290,12 @@ function htmlAddOption(customer) {
     $('#select-customer').prepend($option);
   }
 
+function htmlResetCart()  {
+  $('#select-customer').val('default');
+  $('#cart tbody').empty();
+  $('#cart tfoot td').text('');
+}
+
 function htmlAddCartRow(product) {
   var count, $tr, tr;
   var $tds = $('#cart tbody .product-name');
@@ -282,6 +331,27 @@ function htmlUpdateCartTotals(){
   $('#cart-weight').text(db.cart.totals.weight().toFixed(2) + ' lbs');
   $('#cart-shipping').text(formatCurrency(db.cart.totals.shipping()));
   $('#cart-grand').text(formatCurrency(db.cart.totals.grand()));
+}
+
+function htmlAddOrderRow(order) {
+  var row = '<tr><td class="order-id"></td><td class="order-time"></td><td class="order-customer"></td><td class="order-products-list"></td><td class="order-total"></td><td class="order-shipping"></td><td class="order-grand"></td></tr>';
+  var $row = $(row);
+  var $ol = $('<ol>');
+
+  for(var i = 0; i < order.products.length; i++) {
+    var $li = $('<li>').text(order.products[i].name);
+    $ol.append($li);
+  }
+
+  $row.children('.order-id').text(order.id);
+  $row.children('.order-time').text(order.time);
+  $row.children('.order-customer').text(order.customer.name);
+  $row.children('.order-products-list').append($ol);
+  $row.children('.order-total').text(formatCurrency(order.amount));
+  $row.children('.order-shipping').text(formatCurrency(order.shipping));
+  $row.children('.order-grand').text(formatCurrency(order.grand));
+
+  $('#orders').append($row);
 }
 
 // -------------------------------------------------------------------- //

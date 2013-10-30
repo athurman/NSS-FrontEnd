@@ -1,0 +1,13 @@
+extends ../template/layout
+include ../mixins/form-helper.jade
+
+block content
+  h1 New Item
+  a(href='/list') ToDo List
+
+  form(action='/list', method='post')
+    mixin field('name', 'Item', 'Get Gas', true)
+    mixin field('due', 'Due Date', '11/12/2013')
+    mixin field('color', 'Category Color', '#ffcc12')
+    .field
+      button(type='submit') Save Item
