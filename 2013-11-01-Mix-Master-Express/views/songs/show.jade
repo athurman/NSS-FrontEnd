@@ -1,0 +1,21 @@
+extends ../template/layout
+
+block content
+  #indv-song
+    .row
+      .small-12.columns
+        .song-show
+          h1= song.title
+          img(src=song.art)
+          audio(src='../audios/#{song.filename}', controls=true)
+          p.lyrics= song.lyrics
+          p
+            .row
+              .small-3.columns
+                each genre in song.genres
+                  span.genre= '• ' + genre
+              .small-5.columns
+              .small-4.columns
+                span.created-at= song.createdAt
+    .row
+      .small-12.columns

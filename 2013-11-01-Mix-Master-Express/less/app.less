@@ -1,0 +1,146 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+
+@base: #222;
+@fnt: 'Source Sans Pro', sans-serif;
+@song-bottom: 1px solid #3e3e3e;
+
+body{
+  background-color: @base;
+  font-family: @fnt;
+  font-weight: 300;
+}
+
+h1 {
+  font-family: @fnt;
+  font-weight: 300;
+  color: #A3C2C2;
+}
+h4 {
+  font-family: @fnt;
+  font-weight: 300;
+  color: #fff;
+}
+#master {
+  color: #EB894E;
+}
+
+a {
+  color: #3EB8E8;
+  &:hover {
+    text-decoration: underline;
+    color: #3EB8E8;
+  }
+}
+
+#header {
+  p {
+    text-align: center;
+  }
+  a {
+    text-align: center;
+  }
+}
+
+#cat-dj {
+  margin: 0 auto;
+  img {
+    margin: auto;
+    margin-left: 285px;
+  }
+}
+
+label {
+  font-family: @fnt;
+  font-weight: 300;
+  color: #F4764D;
+}
+
+#lyrics, #bio {
+  height: 200px;
+}
+
+fieldset {
+  border: 1px solid #3e3e3e;
+}
+
+legend{
+  background-color: @base;
+  color: #EB894E;
+  font-family: @fnt;
+  font-weight: 300;
+}
+
+input[type='text'], textarea {
+  background-color: #C4E8E8;
+  font-family: @fnt;
+  font-weight: 300;
+  color: #222;
+  &:focus {
+    background-color: #C4E8E8;
+    font-family: @fnt;
+    font-weight: 300;
+    color: #222;
+  }
+}
+
+footer a {
+  font-size: 10px;
+}
+
+.song {
+  color: #fff;
+  img {
+    height: 100px;
+    width: 100px;
+    padding: 8px;
+  }
+
+  h3 {
+    font-family: @fnt;
+    font-weight: 200;
+    color: #A3C2C2;
+  }
+
+  .expand {
+    font-family: @fnt;
+    font-weight: 400;
+    color: #A3C2C2;
+  }
+  .collapse {
+    color: #A3C2C2;
+  }
+}
+
+.created-at {
+  text-align: right;
+  color: #fff;
+}
+
+.genre {
+  color: #EB894E;
+  padding-left: 5px;
+  text-align: left;
+}
+
+.song-show, .song {
+  border-bottom: @song-bottom;
+}
+
+#indv-song {
+  img {
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin-right: 15px;
+  }
+  audio {
+    margin: 5px;
+  }
+  p {
+    color: #fff;
+  }
+  .lyrics {
+    padding: 10px;
+    margin: 15px;
+  }
+}
