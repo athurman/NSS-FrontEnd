@@ -1,11 +1,13 @@
 // initializing models
 require('./models/song');
 require('./models/artist');
+require('./models/genre');
 
 // express application
 var home = require('./routes/home');
 var songs = require('./routes/songs');
 var artists = require('./routes/artists');
+var genres = require('./routes/genres');
 
 // modules
 var express = require('express');
@@ -40,11 +42,21 @@ app.get('/songs/new', songs.new);
 app.post('/songs', songs.create);
 app.get('/songs/:id', songs.show);
 app.delete('/songs/:id', songs.delete);
+app.get('/songs/:id/edit', songs.edit); // Cannot have the same URL for the same Verb.  Either make the verb or the URL unique.
+app.put('/songs/:id', songs.update); // All URLs are the same for three below, because the verb is different.
 
 app.get('/artists', artists.index);
 app.get('/artists/new', artists.new);
 app.post('/artists', artists.create);
+app.get('/artists/:id', artists.show);
+app.delete('/artists/:id', artists.delete);
 
+app.get('/genres', genres.index);
+app.get('/genres/new', genres.new);
+app.post('/genres', genres.create);
+app.get('/genres/:id/edit', genres.edit);
+app.put('/genres/:id', genres.update);
+app.delete('/genres/:id', genres.delete);
 
 // start server
 http.createServer(app).listen(app.get('port'), function(){

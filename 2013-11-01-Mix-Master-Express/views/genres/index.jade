@@ -1,0 +1,18 @@
+extends ../template/layout
+
+block content
+  .row
+    .small-12.columns
+      h1(style='text-align: center;') genres
+  .row
+    .small-12.columns
+      each genre in genres
+        h2= genre.name
+          span.edit: a(href='/genres/#{genre.id}/edit') edit
+          .row
+              .small-5.columns
+              .small-6.columns
+              .small-1.columns
+                form(action='/genres/#{genre.id}', method='post')
+                  input(type='hidden', name='_method', value='delete')
+                  button.tiny.alert.radius(type='submit') Delete

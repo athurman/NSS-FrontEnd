@@ -1,0 +1,23 @@
+extends ../template/layout
+
+block content
+  #indv-artist
+    .row
+      .small-12.columns
+        .artist
+          h1= artist.name
+          img(src=artist.photo)
+          a(href=artist.website)= artist.name + ' Website'
+          p.bio= artist.bio
+    .row
+      .small-12.columns
+        #songs
+          h3 Songs:
+            each song in artist.songs
+              .artist-song
+                p= song.title
+                img(src=song.art)
+                p.createdAt= song.createdAt
+                .clear
+    .row
+      .small-12.columns

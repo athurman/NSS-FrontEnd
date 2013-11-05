@@ -10,13 +10,14 @@ block content
         each song in songs
           .song
             h3: a(href='/songs/#{song.id}')= song.title
+              span.edit: a(href='/songs/#{song.id}/edit') edit
             img(src=song.art)
             audio(src='audios/#{song.filename}', controls=true)
             p
               .row
                 .small-3.columns
                   each genre in song.genres
-                    span.genre= '• ' + genre
+                    span.genre= '• ' + genre.name
                 .small-5.columns
                 .small-4.columns
                   span.created-at= song.createdAt
@@ -26,7 +27,8 @@ block content
                 .expand_list
                   p= song.lyrics
                   p.collapse Hide Lyrics
-              .small-7.columns
+              .small-5.columns
+              .small-2.columns
               .small-1.columns
                 form(action='/songs/#{song.id}', method='post')
                   input(type='hidden', name='_method', value='delete')

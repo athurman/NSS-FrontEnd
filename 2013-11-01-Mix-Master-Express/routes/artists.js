@@ -3,7 +3,9 @@ var Song = mongoose.model('Song');
 var Artist = mongoose.model('Artist');
 
 exports.index = function(req, res){
-  res.render('artists/index', {title: 'artists | mixmaster'});
+  Artist.find(function(err, artists){
+    res.render('artists/index', {title: 'artists | mixmaster', artists: artists});
+  });
 };
 
 exports.new = function(req, res){
@@ -17,5 +19,25 @@ exports.create = function(req, res){
     console.log(artist);
     res.redirect('/artists');
   });
-
 };
+
+exports.show = function(req, res){
+  Artist.findOne(req.params.id).populate('songs').exec(function(err, artist) {
+    console.log(artist.songs);
+    res.render('artists/show', {title: 'Artist ' + req.params.id, artist: artist});
+  });
+    // .findOne({ id: req.params.id });
+    // console.log(artist);
+    // .populate('song');
+    // .exec(function (err, artist) {
+    //   console.log('The creator is %s', artist.song.title);
+    // });
+};
+
+
+exports.delete = function(req, res){
+  Artist.findByIdAndRemove(req.params.id, function(err, artist){
+    res.redirect('/artists');
+  });
+};
+

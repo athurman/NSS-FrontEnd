@@ -15,7 +15,24 @@ h1 {
   font-weight: 300;
   color: #A3C2C2;
 }
+
+h2 {
+  font-family: @fnt;
+  font-weight: 300;
+  color: #EB894E;
+}
+
+.edit {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
 h4 {
+  font-family: @fnt;
+  font-weight: 300;
+  color: #fff;
+}
+p, .genre {
   font-family: @fnt;
   font-weight: 300;
   color: #fff;
@@ -87,7 +104,7 @@ footer a {
   font-size: 10px;
 }
 
-.song {
+.song, .artist {
   color: #fff;
   img {
     height: 100px;
@@ -122,11 +139,11 @@ footer a {
   text-align: left;
 }
 
-.song-show, .song {
+.show, .song {
   border-bottom: @song-bottom;
 }
 
-#indv-song {
+#indv-song, #indv-artist {
   img {
     width: 250px;
     height: 250px;
@@ -139,8 +156,36 @@ footer a {
   p {
     color: #fff;
   }
+  h3 {
+    font-family: @fnt;
+    font-weight: 200;
+    color: #A3C2C2;
+  }
   .lyrics {
     padding: 10px;
     margin: 15px;
   }
+}
+
+#songs {
+  p {
+    margin-bottom: 0px;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    float: left;
+  }
+  .createdAt {
+    display: block;
+    font-size: 12px;
+    float: left;
+    margin-top: 105px;
+    position: relative;
+    left: -115px;
+  }
+}
+
+.clear {
+  clear: both;
 }
